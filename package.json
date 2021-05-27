@@ -1,0 +1,26 @@
+{
+	"name": "cardano-cli-ts",
+	"version": "1.0.0",
+	"author": "Ícaro C. Capobianco",
+	"description": "Wrapping cardano-cli seemed like the lazy thing I would do",
+	"repository": {
+		"url": "https://github.com/icaro-capobianco/cardano-cli-ts"
+	},
+	"license": "MIT",
+	"main": "es5/index.js",
+	"module": "es6/index.js",
+	"source": "src/index.ts",
+	"scripts": {
+		"es5": "tsc -p tsconfig.json --target es6 --outDir es6 --module es6 --watch",
+		"es6": "tsc -p tsconfig.json --target es5 --outDir es5 --module commonjs --watch",
+		"tsc": "concurrently \"npm run es5\" \"npm run es6\"",
+		"watch": "concurrently \"npm run es5\" \"npm run es6\""
+	},
+	"devDependencies": {
+		"concurrently": "^6.1.0",
+		"typescript": "^4.2.4"
+	},
+	"dependencies": {
+		"@types/node": "^15.6.1"
+	}
+}

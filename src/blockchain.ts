@@ -172,21 +172,27 @@ export interface Blockchain {
 }
 
 export const blockchain: Blockchain = {
-	cat: makeCommandWithArgsOptsAndFlags('cat'),
-	destroy: makeCommandWithArgsOptsAndFlags('destroy'),
-	'remote-fetch': makeCommandWithArgsOptsAndFlags('remote-fetch'),
-	'remote-ls': makeCommandWithArgsOptsAndFlags('remote-ls'),
-	'remote-add': makeCommandWithArgsOptsAndFlags('remote-add'),
-	'remote-rm': makeCommandWithArgsOptsAndFlags('remote-rm'),
-	'verify-block': makeCommandWithArgsOptsAndFlags('verify-block'),
-	forward: makeCommandWithArgsOptsAndFlags('forward'),
-	gc: makeCommandWithArgsOptsAndFlags('gc'),
-	help: makeCommandWithArgsOptsAndFlags('help'),
-	list: makeCommandWithArgsOptsAndFlags('list'),
-	log: makeCommandWithArgsOptsAndFlags('log'),
-	new: makeCommandWithArgsOptsAndFlags('new'),
-	pull: makeCommandWithArgsOptsAndFlags('pull'),
-	query: makeCommandWithArgsOptsAndFlags('query'),
-	status: makeCommandWithArgsOptsAndFlags('status'),
-	verify: makeCommandWithArgsOptsAndFlags('verify'),
+	cat: makeCommandWithArgsOptsAndFlags('blockchain', 'cat'),
+	destroy: makeCommandWithArgsOptsAndFlags('blockchain', 'destroy'),
+	'remote-fetch': makeCommandWithArgsOptsAndFlags(
+		'blockchain',
+		'remote-fetch'
+	),
+	'remote-ls': makeCommandWithArgsOptsAndFlags('blockchain', 'remote-ls'),
+	'remote-add': makeCommandWithArgsOptsAndFlags('blockchain', 'remote-add'),
+	'remote-rm': makeCommandWithArgsOptsAndFlags('blockchain', 'remote-rm'),
+	'verify-block': makeCommandWithArgsOptsAndFlags(
+		'blockchain',
+		'verify-block'
+	),
+	forward: makeCommandWithArgsOptsAndFlags('blockchain', 'forward'),
+	gc: makeCommandWithArgsOptsAndFlags('blockchain', 'gc'),
+	help: makeCommandWithArgsOptsAndFlags('blockchain', 'help'),
+	list: makeCommandWithArgsOptsAndFlags('blockchain', 'list'),
+	log: makeCommandWithArgsOptsAndFlags('blockchain', 'log'),
+	new: makeCommandWithArgsOptsAndFlags('blockchain', 'new'),
+	pull: makeCommandWithArgsOptsAndFlags('blockchain', 'pull'),
+	query: makeCommandWithArgsOptsAndFlags('blockchain', 'query'),
+	status: makeCommandWithArgsOptsAndFlags('blockchain', 'status'),
+	verify: makeCommandWithArgsOptsAndFlags('blockchain', 'verify'),
 }

@@ -638,12 +638,66 @@ const cardanoCLI = {
 	},
 	/** Genesis block commands */
 	genesis: {
-		
+		/** Create a Shelley genesis key pair */
+		'key-gen-genesis' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Create a Shelley genesis delegate key pair */
+		'key-gen-delegate' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Create a Shelley genesis UTxO key pair */
+		'key-gen-utxo' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Print the identifier (hash) of a public key */
+		'key-hash' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Derive the verification key from a signing key */
+		'get-ver-key' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Get the address for an initial UTxO based on the verification key */
+		'initial-addr' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Get the TxIn for an initial UTxO based on the verification key */
+		'initial-txin' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Create a Shelley genesis file from a genesis template and genesis/delegation/spending keys. */
+		'create' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Create a staked Shelley genesis file from a genesis template and genesis/delegation/spending keys. */
+		'create-staked' : ( opts : Opts<{
+
+		}> ) => {},
+		/** Compute the hash of a genesis file */
+		'hash' : ( opts : Opts<{
+
+		}> ) => {},
 	},
 	/** Governance commands */
-	governance: () => {}
+	governance: {
+		/** Create an MIR (Move Instantaneous Rewards) certificate */
+		'create-mir-certificate' : ( opts : Opts<{}> ) => {},
+		/** Create a genesis key delegation certificate */
+		'create-genesis-key-delegation-certificate' : ( opts : Opts<{}> ) => {},
+		/** Create an update proposal */
+		'create-update-proposal' : ( opts : Opts<{}> ) => {},
+	},
 	/** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
-	'text-view': () => {}
+	'text-view': {
+		/** Print a TextView file as decoded CBOR. */
+		'decode-cbor' : ( opts : Opts<{
+			/** CBOR input file. */
+			'--in-file' : string
+			/** Optional output file. Default is to write to stdout. */
+			'--out-file' : string
+		}> ) => {}
+	}
 }
 // export interface CardanoNode {}
 // export interface CardanoChairman {}

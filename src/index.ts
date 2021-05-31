@@ -1,5 +1,5 @@
 import { stakeAddress } from './stake-address'
-import { address } from './adress'
+import { address } from './address'
 import { key } from './key'
 import { transaction } from './transaction'
 import { node } from './node'

@@ -8,6 +8,7 @@ export declare const cardanoCli: {
             '--verification-key-file': string;
             '--signing-key-file': string;
         }>) => Promise<unknown>;
+        /** Node operation commands */
         'key-hash': (cliPath: string) => (opts: import("./common").Opts<{
             '--payment-verification-key': string;
             '--payment-verification-key-file': string;
@@ -37,9 +38,10 @@ export declare const cardanoCli: {
             '--signing-key-file': string;
         }>) => Promise<unknown>;
         build: (cliPath: string) => (opts: import("./common").Opts<{
-            '--stake-verification-key': string; /** Transaction commands */
+            '--stake-verification-key': string;
             '--stake-verification-key-file': string;
-            '--mainnet'?: boolean | undefined;
+            /** Stake pool commands */
+            '--mainnet'?: boolean | undefined; /** Node query commands. Will query the local node whose Unix domain socket is obtained from the CARDANO_NODE_SOCKET_PATH enviromnent variable. */
             '--testnet-magic'?: string | undefined;
             '--out-file'?: string | undefined;
         }>) => Promise<unknown>;
@@ -123,7 +125,7 @@ export declare const cardanoCli: {
             '--allegra-era': string;
             '--mary-era': string;
             '--tx-in': string;
-            '--txin-script-file': string;
+            '--txin-script-file': string; /** Key utility commands */
             '--tx-out': string;
             '--mint': string;
             '--minting-script-file': string;
@@ -211,7 +213,9 @@ export declare const cardanoCli: {
             '--verification-key-file': string;
             '--signing-key-file': string;
         }>) => Promise<unknown>;
+        /** Genesis block commands */
         'key-gen-VRF': (cliPath: string) => (opts: import("./common").Opts<{
+            /** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
             '--verification-key-file': string;
             '--signing-key-file': string;
         }>) => Promise<unknown>;
@@ -246,7 +250,7 @@ export declare const cardanoCli: {
             '--pool-pledge': string;
             '--pool-cost': string;
             '--pool-margin': string;
-            '--pool-reward-account-verification-key': string; /** Genesis block commands */
+            '--pool-reward-account-verification-key': string;
             '--pool-reward-account-verification-key-file': string;
             '--pool-owner-verification-key': string;
             '--pool-owner-stake-verification-key-file': string;
@@ -285,7 +289,6 @@ export declare const cardanoCli: {
             '--epoch-slots': string;
             '--cardano-mode': string;
             '--mainnet': string;
-            /** Node operation commands */
             '--testnet-magic': string;
             '--out-file': string;
         }>) => Promise<unknown>;
@@ -381,7 +384,7 @@ export declare const cardanoCli: {
     governance: {
         'create-mir-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
         'create-genesis-key-delegation-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
-        'create-update-proposal': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
+        'create-update-proposal': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>; /** Key utility commands */
     };
     /** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
     'text-view': {

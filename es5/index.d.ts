@@ -1,4 +1,4 @@
-declare const cardanoCLI: {
+export declare const cardanoCli: {
     /** Payment address commands */
     address: {
         'key-gen': (cliPath: string) => (opts: import("./common").Opts<{
@@ -35,14 +35,14 @@ declare const cardanoCLI: {
         'key-gen': (cliPath: string) => (opts: import("./common").Opts<{
             '--verification-key-file': string;
             '--signing-key-file': string;
-        }>) => Promise<unknown>; /** Payment address commands */
+        }>) => Promise<unknown>;
         build: (cliPath: string) => (opts: import("./common").Opts<{
-            '--stake-verification-key': string;
+            '--stake-verification-key': string; /** Transaction commands */
             '--stake-verification-key-file': string;
             '--mainnet'?: boolean | undefined;
             '--testnet-magic'?: string | undefined;
             '--out-file'?: string | undefined;
-        }>) => Promise<unknown>; /** Governance commands */
+        }>) => Promise<unknown>;
         'key-hash': (cliPath: string) => (opts: import("./common").Opts<{
             '--stake-verification-key': string;
             '--stake-verification-key-file': string;
@@ -121,12 +121,12 @@ declare const cardanoCLI: {
             '--byron-era': string;
             '--shelley-era': string;
             '--allegra-era': string;
-            '--mary-era': string; /** Payment address commands */
+            '--mary-era': string;
             '--tx-in': string;
             '--txin-script-file': string;
             '--tx-out': string;
             '--mint': string;
-            '--minting-script-file': string; /** Governance commands */
+            '--minting-script-file': string;
             '--invalid-before': string;
             '--invalid-hereafter': string;
             '--fee': string;
@@ -246,7 +246,7 @@ declare const cardanoCLI: {
             '--pool-pledge': string;
             '--pool-cost': string;
             '--pool-margin': string;
-            '--pool-reward-account-verification-key': string;
+            '--pool-reward-account-verification-key': string; /** Genesis block commands */
             '--pool-reward-account-verification-key-file': string;
             '--pool-owner-verification-key': string;
             '--pool-owner-stake-verification-key-file': string;
@@ -285,6 +285,7 @@ declare const cardanoCLI: {
             '--epoch-slots': string;
             '--cardano-mode': string;
             '--mainnet': string;
+            /** Node operation commands */
             '--testnet-magic': string;
             '--out-file': string;
         }>) => Promise<unknown>;
@@ -367,7 +368,7 @@ declare const cardanoCLI: {
     genesis: {
         'key-gen-genesis': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
         'key-gen-delegate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
-        'key-gen-utxo': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>; /** Payment address commands */
+        'key-gen-utxo': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
         'key-hash': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
         'get-ver-key': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
         'initial-addr': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
@@ -379,7 +380,7 @@ declare const cardanoCLI: {
     /** Governance commands */
     governance: {
         'create-mir-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
-        'create-genesis-key-delegation-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>; /** Payment address commands */
+        'create-genesis-key-delegation-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
         'create-update-proposal': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
     };
     /** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
@@ -390,11 +391,12 @@ declare const cardanoCLI: {
         }>) => Promise<unknown>;
     };
 };
-export declare type CardanoCLI = typeof cardanoCLI;
+export declare type CardanoCli = typeof cardanoCli;
 export declare type UseCliPath = {
-    [CMD in keyof CardanoCLI]: {
-        [SUB in keyof CardanoCLI[CMD]]: CardanoCLI[CMD][SUB] extends (...args: any) => any ? ReturnType<CardanoCLI[CMD][SUB]> : null;
+    [CMD in keyof CardanoCli]: {
+        [SUB in keyof CardanoCli[CMD]]: CardanoCli[CMD][SUB] extends (...args: any) => any ? ReturnType<CardanoCli[CMD][SUB]> : null;
     };
 };
 export declare const useCliPath: (path: string) => UseCliPath;
-export default cardanoCLI;
+declare const _default: UseCliPath;
+export default _default;

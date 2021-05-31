@@ -9,7 +9,7 @@ import { genesis } from './genesis'
 import { governance } from './governance'
 import { textView } from './textView'
 
-const cardanoCLI = {
+export const cardanoCli = {
 	/** Payment address commands */
 	address,
 
@@ -41,20 +41,20 @@ const cardanoCLI = {
 	'text-view': textView,
 }
 
-export type CardanoCLI = typeof cardanoCLI
+export type CardanoCli = typeof cardanoCli
 
 export type UseCliPath = {
-	[CMD in keyof CardanoCLI]: {
-		[SUB in keyof CardanoCLI[CMD]]: CardanoCLI[CMD][SUB] extends (
+	[CMD in keyof CardanoCli]: {
+		[SUB in keyof CardanoCli[CMD]]: CardanoCli[CMD][SUB] extends (
 			...args: any
 		) => any
-			? ReturnType<CardanoCLI[CMD][SUB]>
+			? ReturnType<CardanoCli[CMD][SUB]>
 			: null
 	}
 }
 
 export const useCliPath = (path: string) =>
-	Object.entries(cardanoCLI).reduce<UseCliPath>((acc, [cmd, subcommands]) => {
+	Object.entries(cardanoCli).reduce<UseCliPath>((acc, [cmd, subcommands]) => {
 		acc[cmd as keyof UseCliPath] = Object.entries(subcommands).reduce<any>(
 			(acc, [sub, fun]) => {
 				acc[sub] = fun(path)
@@ -65,4 +65,4 @@ export const useCliPath = (path: string) =>
 		return acc
 	}, {} as UseCliPath)
 
-export default cardanoCLI
+export default useCliPath('cardano-cli')

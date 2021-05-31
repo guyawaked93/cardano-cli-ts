@@ -1,18 +1,49 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var blockchain_1 = require("./blockchain");
+exports.useCliPath = void 0;
+var stake_address_1 = require("./stake-address");
+var adress_1 = require("./adress");
+var key_1 = require("./key");
 var transaction_1 = require("./transaction");
-var wallet_1 = require("./wallet");
-/** Humm, how shall I export this module ?!?
- * cardano?
- * or maybe clidano
- * pehaps clardano
- * what about claudio?
- */
-var cardano = {
-    blockchain: blockchain_1.blockchain,
+var node_1 = require("./node");
+var stake_pool_1 = require("./stake-pool");
+var query_1 = require("./query");
+var genesis_1 = require("./genesis");
+var governance_1 = require("./governance");
+var textView_1 = require("./textView");
+var cardanoCLI = {
+    /** Payment address commands */
+    address: adress_1.address,
+    /** Stake address commands */
+    'stake-address': stake_address_1.stakeAddress,
+    /** Key utility commands */
+    key: key_1.key,
+    /** Transaction commands */
     transaction: transaction_1.transaction,
-    wallet: wallet_1.wallet,
+    /** Node operation commands */
+    node: node_1.node,
+    /** Stake pool commands */
+    'stake-pool': stake_pool_1.stakePool,
+    /** Node query commands. Will query the local node whose Unix domain socket is obtained from the CARDANO_NODE_SOCKET_PATH enviromnent variable. */
+    query: query_1.query,
+    /** Genesis block commands */
+    genesis: genesis_1.genesis,
+    /** Governance commands */
+    governance: governance_1.governance,
+    /** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
+    'text-view': textView_1.textView,
 };
-exports.default = cardano;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSwyQ0FBcUQ7QUFDckQsNkNBQXdEO0FBQ3hELG1DQUF5QztBQW1CekM7Ozs7O0dBS0c7QUFFSCxJQUFNLE9BQU8sR0FBWTtJQUN4QixVQUFVLHlCQUFBO0lBQ1YsV0FBVywyQkFBQTtJQUNYLE1BQU0saUJBQUE7Q0FDTixDQUFBO0FBRUQsa0JBQWUsT0FBTyxDQUFBIn0=
+var useCliPath = function (path) {
+    return Object.entries(cardanoCLI).reduce(function (acc, _a) {
+        var cmd = _a[0], subcommands = _a[1];
+        acc[cmd] = Object.entries(subcommands).reduce(function (acc, _a) {
+            var sub = _a[0], fun = _a[1];
+            acc[sub] = fun(path);
+            return acc;
+        }, {});
+        return acc;
+    }, {});
+};
+exports.useCliPath = useCliPath;
+exports.default = cardanoCLI;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsaURBQThDO0FBQzlDLG1DQUFrQztBQUNsQyw2QkFBMkI7QUFDM0IsNkNBQTJDO0FBQzNDLCtCQUE2QjtBQUM3QiwyQ0FBd0M7QUFDeEMsaUNBQStCO0FBQy9CLHFDQUFtQztBQUNuQywyQ0FBeUM7QUFDekMsdUNBQXFDO0FBRXJDLElBQU0sVUFBVSxHQUFHO0lBQ2xCLCtCQUErQjtJQUMvQixPQUFPLGtCQUFBO0lBRVAsNkJBQTZCO0lBQzdCLGVBQWUsRUFBRSw0QkFBWTtJQUU3QiwyQkFBMkI7SUFDM0IsR0FBRyxXQUFBO0lBRUgsMkJBQTJCO0lBQzNCLFdBQVcsMkJBQUE7SUFFWCw4QkFBOEI7SUFDOUIsSUFBSSxhQUFBO0lBRUosMEJBQTBCO0lBQzFCLFlBQVksRUFBRSxzQkFBUztJQUV2QixrSkFBa0o7SUFDbEosS0FBSyxlQUFBO0lBRUwsNkJBQTZCO0lBQzdCLE9BQU8sbUJBQUE7SUFFUCwwQkFBMEI7SUFDMUIsVUFBVSx5QkFBQTtJQUVWLDBIQUEwSDtJQUMxSCxXQUFXLEVBQUUsbUJBQVE7Q0FDckIsQ0FBQTtBQWNNLElBQU0sVUFBVSxHQUFHLFVBQUMsSUFBWTtJQUN0QyxPQUFBLE1BQU0sQ0FBQyxPQUFPLENBQUMsVUFBVSxDQUFDLENBQUMsTUFBTSxDQUFhLFVBQUMsR0FBRyxFQUFFLEVBQWtCO1lBQWpCLEdBQUcsUUFBQSxFQUFFLFdBQVcsUUFBQTtRQUNwRSxHQUFHLENBQUMsR0FBdUIsQ0FBQyxHQUFHLE1BQU0sQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLENBQUMsTUFBTSxDQUNoRSxVQUFDLEdBQUcsRUFBRSxFQUFVO2dCQUFULEdBQUcsUUFBQSxFQUFFLEdBQUcsUUFBQTtZQUNkLEdBQUcsQ0FBQyxHQUFHLENBQUMsR0FBRyxHQUFHLENBQUMsSUFBSSxDQUFDLENBQUE7WUFDcEIsT0FBTyxHQUFHLENBQUE7UUFDWCxDQUFDLEVBQ0QsRUFBRSxDQUNGLENBQUE7UUFDRCxPQUFPLEdBQUcsQ0FBQTtJQUNYLENBQUMsRUFBRSxFQUFnQixDQUFDO0FBVHBCLENBU29CLENBQUE7QUFWUixRQUFBLFVBQVUsY0FVRjtBQUVyQixrQkFBZSxVQUFVLENBQUEifQ==

@@ -1,35 +1,68 @@
-import { blockchain, Blockchain } from './blockchain'
-import { transaction, Transaction } from './transaction'
-import { wallet, Wallet } from './wallet'
+import { stakeAddress } from './stake-address'
+import { address } from './adress'
+import { key } from './key'
+import { transaction } from './transaction'
+import { node } from './node'
+import { stakePool } from './stake-pool'
+import { query } from './query'
+import { genesis } from './genesis'
+import { governance } from './governance'
+import { textView } from './textView'
 
-export interface Cardano {
-	/** blockchain operations */
-	blockchain: Blockchain // blockchain (useful comment)
-	/** Transaction operations. */
-	transaction: Transaction // All to my wallet please
-	/** wallet operations */
-	wallet: Wallet
+export const cardanoCli = {
+	/** Payment address commands */
+	address,
 
-	// TODO
-	/** Debug and advanced tooling operations. */
-	/** No debugging, just write the code, nothing will ever go wrong, so no debugging */
-	debug?: undefined
-	/** Prints this message or the help of the given subcommand(s) */
-	/** Help, you don't need help, you got this fam, believe in yourself */
-	help?: undefined
-}
+	/** Stake address commands */
+	'stake-address': stakeAddress,
 
-/** Humm, how shall I export this module ?!?
- * cardano?
- * or maybe clidano
- * pehaps clardano
- * what about claudio?
- */
+	/** Key utility commands */
+	key,
 
-const cardano: Cardano = {
-	blockchain,
+	/** Transaction commands */
 	transaction,
-	wallet,
+
+	/** Node operation commands */
+	node,
+
+	/** Stake pool commands */
+	'stake-pool': stakePool,
+
+	/** Node query commands. Will query the local node whose Unix domain socket is obtained from the CARDANO_NODE_SOCKET_PATH enviromnent variable. */
+	query,
+
+	/** Genesis block commands */
+	genesis,
+
+	/** Governance commands */
+	governance,
+
+	/** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
+	'text-view': textView,
 }
 
-export default cardano
+export type CardanoCli = typeof cardanoCli
+
+export type UseCliPath = {
+	[CMD in keyof CardanoCli]: {
+		[SUB in keyof CardanoCli[CMD]]: CardanoCli[CMD][SUB] extends (
+			...args: any
+		) => any
+			? ReturnType<CardanoCli[CMD][SUB]>
+			: null
+	}
+}
+
+export const useCliPath = (path: string) =>
+	Object.entries(cardanoCli).reduce<UseCliPath>((acc, [cmd, subcommands]) => {
+		acc[cmd as keyof UseCliPath] = Object.entries(subcommands).reduce<any>(
+			(acc, [sub, fun]) => {
+				acc[sub] = fun(path)
+				return acc
+			},
+			{}
+		)
+		return acc
+	}, {} as UseCliPath)
+
+export default useCliPath('cardano-cli')

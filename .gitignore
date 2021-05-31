@@ -22,3 +22,5 @@ node_modules
 
 size-plugin.json
 build
+
+cardano-bin/*

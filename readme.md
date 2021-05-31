@@ -1,26 +1,32 @@
-Writting a wrapper around cardano cli seems like a really lazy thing to do, that is why I will do it
+Simple TypeScript library wrapping cardano-cli
 
-Example
+## Usage
 
-```
-import cardano from 'cardano-cli-ts'
+**Assumes you have a cardano-cli on your shell variables**
 
-cardano.wallet.create(
-	['One Wallet to Rule them All'],
-	{
-		'derivation-scheme': 'v2',
-		'mnemonics-length': 24,
-		'wallet-scheme': 'random_index_2levels',
-	},
-	{
-		verbose: true,
-	}
-)
-
-// Outputs: cardano-cli wallet create 'One Wallet to Rule them All' --derivation-scheme v2 --mnemonics-length 24 --wallet-scheme random_index_2levels
-
+```typescript
+import cardanoCli from 'cardano-cli-ts'
+cardanoCli.address.info({ options })
 ```
 
-### Disclaimer
+### Custom Cli path
 
-This doesn't work yet because I still have to make it possible to respond to CLI prompts
+**For all commands**
+
+```typescript
+import { useCliPath } from 'cardano-cli-ts'
+const myCardanoCli = useCliPath('my-path-to/cardano-cli')
+myCardanoCli.address.info(options)
+```
+
+**For a single command**
+
+```typescript
+import { cardanoCli } from 'cardano-cli-ts'
+const getAddressInfo = cardanoCli.address.info('my-cardano-cli-path')
+getAddressInfo(options)
+```
+
+# TODO(s)
+
+Complete the commands (missing governance and genesis)

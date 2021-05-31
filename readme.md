@@ -30,3 +30,7 @@ getAddressInfo(options)
 # TODO(s)
 
 Complete the commands (missing governance and genesis)
+
+# Notes
+
+- Most of the options are just typed as string, some might actually be better typed as integers and others might be optional too. I will be updating it as I use it, please open an issue if you find any problem, thanks ;)

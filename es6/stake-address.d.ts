@@ -1,65 +1,65 @@
 /** Stake address commands */
-export declare const stakeAddress: {
+export declare type Commands = {
     /** Create a stake address key pair */
-    'key-gen': (cliPath: string) => (opts: import("./common").Opts<{
+    keyGen: {
         /** Output filepath of the verification key. */
-        '--verification-key-file': string;
+        verificationKeyFile: string;
         /** Output filepath of the signing key. */
-        '--signing-key-file': string;
-    }>) => Promise<unknown>;
+        signingKeyFile: string;
+    };
     /** Build a stake address */
-    build: (cliPath: string) => (opts: import("./common").Opts<{
+    build: {
         /** Stake verification key (Bech32 or hex-encoded). */
-        '--stake-verification-key': string;
+        stakeVerificationKey: string;
         /** Filepath of the staking verification key. */
-        '--stake-verification-key-file': string;
+        stakeVerificationKeyFile: string;
         /** Use the mainnet magic id. */
-        '--mainnet'?: boolean | undefined;
+        mainnet?: boolean;
         /** Specify a testnet magic id. */
-        '--testnet-magic'?: string | undefined;
+        testnetMagic?: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file'?: string | undefined;
-    }>) => Promise<unknown>;
+        outFile?: string;
+    };
     /** Print the hash of a stake address key. */
-    'key-hash': (cliPath: string) => (opts: import("./common").Opts<{
+    keyHash: {
         /** Stake verification key (Bech32 or hex-encoded). */
-        '--stake-verification-key': string;
+        stakeVerificationKey: string;
         /** Filepath of the staking verification key. */
-        '--stake-verification-key-file': string;
+        stakeVerificationKeyFile: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file'?: string | undefined;
-    }>) => Promise<unknown>;
+        outFile?: string;
+    };
     /** Create a stake address registration certificate */
-    'registration-certificate': (cliPath: string) => (opts: import("./common").Opts<{
+    registrationCertificate: {
         /** Stake verification key (Bech32 or hex-encoded). */
-        '--stake-verification-key': string;
+        stakeVerificationKey: string;
         /** Filepath of the staking verification key. */
-        '--stake-verification-key-file': string;
+        stakeVerificationKeyFile: string;
         /** The output file. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Create a stake address deregistration certificate */
-    'deregistration-certificate': (cliPath: string) => (opts: import("./common").Opts<{
+    deregistrationCertificate: {
         /** Stake verification key (Bech32 or hex-encoded). */
-        '--stake-verification-key': string;
+        stakeVerificationKey: string;
         /** Filepath of the staking verification key. */
-        '--stake-verification-key-file': string;
+        stakeVerificationKeyFile: string;
         /** The output file. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Create a stake address delegation certificate */
-    'delegation-certificate': (cliPath: string) => (opts: import("./common").Opts<{
+    delegationCertificate: {
         /** Stake verification key (Bech32 or hex-encoded). */
-        '--stake-verification-key': string;
+        stakeVerificationKey: string;
         /** Filepath of the staking verification key. */
-        '--stake-verification-key-file': string;
+        stakeVerificationKeyFile: string;
         /** Stake pool verification key (Bech32 or hex-encoded). */
-        '--stake-pool-verification-key': string;
+        stakePoolVerificationKey: string;
         /** Filepath of the stake pool verification key. */
-        '--cold-verification-key-file': string;
+        coldVerificationKeyFile: string;
         /** Stake pool ID/verification key hash (either Bech32-encoded or hex-encoded). */
-        '--stake-pool-id STAKE-POOL-ID': string;
+        stakePoolIdStakePoolId: string;
         /** The output file. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
 };

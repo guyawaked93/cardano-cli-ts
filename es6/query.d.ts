@@ -1,159 +1,159 @@
-export declare const query: {
+export declare type Commands = {
     /** Get the node's current protocol parameters */
-    'protocol-parameters': (cliPath: string) => (opts: import("./common").Opts<{
+    protocolParameters: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Get the node's current tip (slot no, hash, block no) */
-    tip: (cliPath: string) => (opts: import("./common").Opts<{
+    tip: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Get the node's current aggregated stake distribution */
-    'stake-distribution': (cliPath: string) => (opts: import("./common").Opts<{
+    stakeDistribution: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Get the current delegations and reward accounts filtered by stake address. */
-    'stake-address-info': (cliPath: string) => (opts: import("./common").Opts<{
+    stakeAddressInfo: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Filter by Cardano stake address (Bech32-encoded). */
-        '--address': string;
+        address: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Get the node's current UTxO with the option of filtering by address(es) */
-    utxo: (cliPath: string) => (opts: import("./common").Opts<{
+    utxo: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Filter by Cardano address(es) (Bech32-encoded). */
-        '--address': string;
+        address: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
-    /** Dump the current ledger state of the node (Ledger.NewEpochState -- advanced command) */
-    'ledger-state': (cliPath: string) => (opts: import("./common").Opts<{
+        outFile: string;
+    };
+    /** Dump the current ledger state of the node (Ledger.NewEpochState advancedCommand) */
+    ledgerState: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
-    /** Dump the current protocol state of the node (Ledger.ChainDepState -- advanced command) */
-    'protocol-state': (cliPath: string) => (opts: import("./common").Opts<{
+        outFile: string;
+    };
+    /** Dump the current protocol state of the node (Ledger.ChainDepState advancedCommand) */
+    protocolState: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Obtain the three stake snapshots for a pool, plus the total active stake (advanced command) */
-    'stake-snapshot': (cliPath: string) => (opts: import("./common").Opts<{
+    stakeSnapshot: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Stake pool ID/verification key hash (either Bech32-encoded or hex-encoded). */
-        '--stake-pool-id STAKE-POOL-ID': string;
-    }>) => Promise<unknown>;
-    /** Dump the pool parameters (Ledger.NewEpochState.esLState._delegationState._pState._pParams -- advanced command) */
-    'pool-params': (cliPath: string) => (opts: import("./common").Opts<{
+        stakePoolIdStakePoolId: string;
+    };
+    /** Dump the pool parameters (Ledger.NewEpochState.esLState._delegationState._pState._pParams advancedCommand) */
+    poolParams: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': string;
+        epochSlots: string;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** Stake pool ID/verification key hash (either Bech32-encoded or hex-encoded). */
-        '--stake-pool-id STAKE-POOL-ID': string;
-    }>) => Promise<unknown>;
+        stakePoolIdStakePoolId: string;
+    };
 };

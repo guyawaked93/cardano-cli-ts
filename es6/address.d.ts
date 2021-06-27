@@ -1,55 +1,53 @@
 /** Payment address commands */
-export declare const address: {
+export declare type Commands = {
     /** Create an address key pair. */
-    'key-gen': (cliPath: string) => (opts: import("./common").Opts<{
+    keyGen: {
         /** Use a normal Shelley-era key (default). */
-        '--normal-key'?: boolean | undefined;
+        normalKey?: boolean;
         /** Use an extended ed25519 Shelley-era key. */
-        '--extended-key'?: boolean | undefined;
+        extendedKey?: boolean;
         /** Use a Byron-era key. */
-        '--byron-key'?: boolean | undefined;
+        byronKey?: boolean;
         /** Output filepath of the verification key. */
-        '--verification-key-file': string;
+        verificationKeyFile: string;
         /** Output filepath of the signing key. */
-        '--signing-key-file': string;
-    }>) => Promise<unknown>;
+        signingKeyFile: string;
+    };
     /** Print the hash of an address key. */
-    'key-hash': (cliPath: string) => (opts: import("./common").Opts<{
+    keyHash: {
         /** STRING Payment verification key (Bech32-encoded) */
-        '--payment-verification-key': string;
+        paymentVerificationKey: string;
         /** Filepath of the payment verification key. */
-        '--payment-verification-key-file': string;
+        paymentVerificationKeyFile: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file'?: string | undefined;
-    }>) => Promise<unknown>;
+        outFile?: string;
+    };
     /** Build a Shelley payment address, with optional delegation to a stake address. */
-    build: (cliPath: string) => (opts: import("./common").Opts<{
+    build: {
         /** Payment verification key (Bech32-encoded) */
-        '--payment-verification-key': string;
+        paymentVerificationKey: string;
         /** Filepath of the payment verification key. */
-        '--payment-verification-key-file': string;
+        paymentVerificationKeyFile: string;
         /** Filepath of the payment script. */
-        '--payment-script-file': string;
+        paymentScriptFile: string;
         /** Stake verification key (Bech32 or hex-encoded). */
-        '--stake-verification-key': string;
+        stakeVerificationKey: string;
         /** Filepath of the staking verification key. */
-        '--stake-verification-key-file': string;
+        stakeVerificationKeyFile: string;
         /** Filepath of the staking script. */
-        '--stake-script-file': string;
+        stakeScriptFile: string;
         /** Use the mainnet magic id. */
-        '--mainnet'?: boolean | undefined;
+        mainnet?: boolean;
         /** Specify a testnet magic id. */
-        '--testnet-magic'?: string | undefined;
+        testnetMagic?: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file'?: string | undefined;
-    }>) => Promise<unknown>;
+        outFile?: string;
+    };
     /** Print information about an address. */
-    info: (cliPath: string) => (opts: import("./common").Opts<{
+    info: {
         /** A Cardano address */
-        '--address': string;
+        address: string;
         /** Optional output file. Default is to write to stdout. */
-        '--out-file'?: string | undefined;
-    }>) => Promise<unknown>;
-    /** Build a Shelley script address. (deprecated; use 'build' instead with '--payment-script-file') */
-    'build-script': null;
+        outFile?: string;
+    };
 };

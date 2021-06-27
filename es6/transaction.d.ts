@@ -1,156 +1,156 @@
-export declare const transaction: {
+export declare type Commands = {
     /** Build a transaction (low-level, inconvenient) */
-    'build-raw': (cliPath: string) => (opts: import("./common").Opts<{
+    buildRaw: {
         /** Specify the Byron era */
-        '--byron-era': string;
+        byronEra: string;
         /** Specify the Shelley era */
-        '--shelley-era': string;
+        shelleyEra: string;
         /** Specify the Allegra era */
-        '--allegra-era': string;
+        allegraEra: string;
         /** Specify the Mary era (default) */
-        '--mary-era': string;
+        maryEra: string;
         /** TxId#TxIx */
-        '--tx-in': string;
+        txIn: string;
         /** Filepath of the spending script witness */
-        '--txin-script-file': string;
+        txinScriptFile: string;
         /** The transaction output as Address+Lovelace where Address is the Bech32-encoded address followed by the amount in Lovelace. */
-        '--tx-out': string;
+        txOut: string;
         /** Mint multi-asset value(s) with the multi-asset cli syntax. You must specifiy a script witness. */
-        '--mint': string;
+        mint: string;
         /** Filepath of the multi-asset witness script. */
-        '--minting-script-file': string;
+        mintingScriptFile: string;
         /** Time that transaction is valid from (in slots). */
-        '--invalid-before': string;
+        invalidBefore: string;
         /** Time that transaction is valid until (in slots). */
-        '--invalid-hereafter': string;
+        invalidHereafter: string;
         /** The fee amount in Lovelace. */
-        '--fee': string;
+        fee: string;
         /** Filepath of the certificate. This encompasses all types of certificates (stake pool certificates, stake key certificates etc). Optionally specify a script witness. */
-        '--certificate-file': string;
+        certificateFile: string;
         /** Filepath of the certificate script witness */
-        '--certificate-script-file': string;
+        certificateScriptFile: string;
         /** The reward withdrawal as StakeAddress+Lovelace where StakeAddress is the Bech32-encoded stake address followed by the amount in Lovelace. Optionally specify a script witness. */
-        '--withdrawal': string;
+        withdrawal: string;
         /** Filepath of the withdrawal script witness. */
-        '--withdrawal-script-file': string;
+        withdrawalScriptFile: string;
         /** Use the "no schema" conversion from JSON to tx metadata. */
-        '--json-metadata-no-schema': string;
+        jsonMetadataNoSchema: string;
         /** Use the "detailed schema" conversion from JSON to tx metadata. */
-        '--json-metadata-detailed-schema': string;
+        jsonMetadataDetailedSchema: string;
         /** Filepath of auxiliary script(s) */
-        '--auxiliary-script-file': string;
+        auxiliaryScriptFile: string;
         /** Filepath of the metadata file, in JSON format. */
-        '--metadata-json-file': string;
+        metadataJsonFile: string;
         /** Filepath of the metadata, in raw CBOR format. */
-        '--metadata-cbor-file': string;
+        metadataCborFile: string;
         /** Filepath of the update proposal. */
-        '--update-proposal-file': string;
+        updateProposalFile: string;
         /** Output filepath of the JSON TxBody. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Sign a transaction */
-    sign: (cliPath: string) => (opts: import("./common").Opts<{
+    sign: {
         /** Input filepath of the JSON TxBody. */
-        '--tx-body-file': string;
+        txBodyFile: string;
         /** Input filepath of the signing key (one or more). */
-        '--signing-key-file': string;
+        signingKeyFile: string;
         /** Byron address (Base58-encoded). */
-        '--address': string;
+        address: string;
         /** Use the mainnet magic id. */
-        '--mainnet'?: boolean | undefined;
+        mainnet?: boolean;
         /** Specify a testnet magic id. */
-        '--testnet-magic'?: boolean | undefined;
+        testnetMagic?: boolean;
         /** Output filepath of the JSON Tx. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Create a transaction witness */
-    witness: (cliPath: string) => (opts: import("./common").Opts<{
+    witness: {
         /** Input filepath of the JSON TxBody. */
-        '--tx-body-file': string;
+        txBodyFile: string;
         /** Filepath of the signing key to be used in witness construction. */
-        '--signing-key-file': string;
+        signingKeyFile: string;
         /** Byron address (Base58-encoded). */
-        '--address': string;
+        address: string;
         /** Use the mainnet magic id. */
-        '--mainnet'?: boolean | undefined;
+        mainnet?: boolean;
         /** Specify a testnet magic id. */
-        '--testnet-magic'?: boolean | undefined;
+        testnetMagic?: boolean;
         /** The output file. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Assemble a tx body and witness(es) to form a transaction */
-    assemble: (cliPath: string) => (opts: import("./common").Opts<{
+    assemble: {
         /** Input filepath of the JSON TxBody. */
-        '--tx-body-file': string;
+        txBodyFile: string;
         /** Filepath of the witness */
-        '--witness-file': string;
+        witnessFile: string;
         /** The output file. */
-        '--out-file': string;
-    }>) => Promise<unknown>;
+        outFile: string;
+    };
     /** Submit a transaction to the local node whose Unix domain socket is obtained from the CARDANO_NODE_SOCKET_PATH enviromnent variable. */
-    submit: (cliPath: string) => (opts: import("./common").Opts<{
+    submit: {
         /** For talking to a node running in Shelley-only mode. */
-        '--shelley-mode': string;
+        shelleyMode: string;
         /** For talking to a node running in Byron-only mode. */
-        '--byron-mode': string;
+        byronMode: string;
         /** The number of slots per epoch for the Byron era. (default: 21600) */
-        '--epoch-slots': number;
+        epochSlots: number;
         /** For talking to a node running in full Cardano mode (default). */
-        '--cardano-mode': string;
+        cardanoMode: string;
         /** Use the mainnet magic id. */
-        '--mainnet'?: boolean | undefined;
+        mainnet?: boolean;
         /** Specify a testnet magic id. */
-        '--testnet-magic'?: boolean | undefined;
+        testnetMagic?: boolean;
         /** Filepath of the transaction you intend to submit. */
-        '--tx-file': string;
-    }>) => Promise<unknown>;
+        txFile: string;
+    };
     /** Calculate the PolicyId from the monetary policy script. */
-    policyid: (cliPath: string) => (opts: import("./common").Opts<{
+    policyid: {
         /** Filepath of the script */
-        '--script-file': string;
-    }>) => Promise<unknown>;
+        scriptFile: string;
+    };
     /** Calculate the minimum fee for a transaction */
-    'calculate-min-fee': (cliPath: string) => (opts: import("./common").Opts<{
+    calculateMinFee: {
         /** Input filepath of the JSON TxBody. */
-        '--tx-body-file': string;
+        txBodyFile: string;
         /** Use the mainnet magic id. */
-        '--mainnet': string;
+        mainnet: string;
         /** Specify a testnet magic id. */
-        '--testnet-magic': string;
+        testnetMagic: string;
         /** [TESTING] The genesis file to take initial protocol parameters from. For test clusters only, since the parameters are going to be obsolete for production clusters. */
-        '--genesis': string;
+        genesis: string;
         /** Filepath of the JSON-encoded protocol parameters file */
-        '--protocol-params-file': string;
+        protocolParamsFile: string;
         /** The number of transaction inputs. */
-        '--tx-in-count': string;
+        txInCount: string;
         /** The number of transaction outputs. */
-        '--tx-out-count': string;
+        txOutCount: string;
         /** The number of Shelley key witnesses. */
-        '--witness-count': string;
+        witnessCount: string;
         /** The number of Byron key witnesses (default is 0). */
-        '--byron-witness-count': string;
-    }>) => Promise<unknown>;
+        byronWitnessCount: string;
+    };
     /** Calculate the minimum value for a transaction */
-    'calculate-min-value': (cliPath: string) => (opts: import("./common").Opts<{
+    calculateMinValue: {
         /** [TESTING] The genesis file to take initial protocol parameters from. For test clusters only, since the parameters are going to be obsolete for production clusters. */
-        '--genesis': string;
+        genesis: string;
         /** Filepath of the JSON-encoded protocol parameters file */
-        '--protocol-params-file': string;
+        protocolParamsFile: string;
         /** Multi-asset value(s) with the multi-asset cli syntax */
-        '--multi-asset': string;
-    }>) => Promise<unknown>;
+        multiAsset: string;
+    };
     /** Print a transaction identifier */
-    txid: (cliPath: string) => (opts: import("./common").Opts<{
+    txid: {
         /** Input filepath of the JSON TxBody. */
-        '--tx-body-file': string;
+        txBodyFile: string;
         /** Input filepath of the JSON Tx. */
-        '--tx-file': string;
-    }>) => Promise<unknown>;
+        txFile: string;
+    };
     /** Print a transaction */
-    view: (cliPath: string) => (opts: import("./common").Opts<{
+    view: {
         /** Input filepath of the JSON TxBody. */
-        '--tx-body-file': string;
+        txBodyFile: string;
         /** Input filepath of the JSON Tx. */
-        '--tx-file': string;
-    }>) => Promise<unknown>;
+        txFile: string;
+    };
 };

@@ -1,8 +1,23 @@
-export declare const governance: {
+export declare type Commands = {
     /** Create an MIR (Move Instantaneous Rewards) certificate */
-    'create-mir-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
+    createMirCertificate: {
+        /** Use the reserves pot. */
+        reserves: string;
+        /** Use the treasury pot. */
+        treasury: string;
+        /** Target stake address (bech32 format). */
+        stakeAddress: string;
+        /** The reward for the relevant reward account. */
+        reward: string;
+        /** The output file. */
+        outFile: string;
+    };
     /** Create a genesis key delegation certificate */
-    'create-genesis-key-delegation-certificate': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
+    createGenesisKeyDelegationCertificate: {
+        outFile: string;
+    };
     /** Create an update proposal */
-    'create-update-proposal': (cliPath: string) => (opts: import("./common").Opts<Record<string, string | number | boolean>>) => Promise<unknown>;
+    createUpdateProposal: {
+        outFile: string;
+    };
 };

@@ -1,41 +1,87 @@
-import { stakeAddress } from './stake-address';
-import { address } from './address';
-import { key } from './key';
-import { transaction } from './transaction';
-import { node } from './node';
-import { stakePool } from './stake-pool';
-import { query } from './query';
-import { genesis } from './genesis';
-import { governance } from './governance';
-import { textView } from './textView';
-export const cardanoCli = {
-    /** Payment address commands */
-    address,
-    /** Stake address commands */
-    'stake-address': stakeAddress,
-    /** Key utility commands */
-    key,
-    /** Transaction commands */
-    transaction,
-    /** Node operation commands */
-    node,
-    /** Stake pool commands */
-    'stake-pool': stakePool,
-    /** Node query commands. Will query the local node whose Unix domain socket is obtained from the CARDANO_NODE_SOCKET_PATH enviromnent variable. */
-    query,
-    /** Genesis block commands */
-    genesis,
-    /** Governance commands */
-    governance,
-    /** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
-    'text-view': textView,
-};
-export const useCliPath = (path) => Object.entries(cardanoCli).reduce((acc, [cmd, subcommands]) => {
-    acc[cmd] = Object.entries(subcommands).reduce((acc, [sub, fun]) => {
-        acc[sub] = fun(path);
-        return acc;
-    }, {});
-    return acc;
-}, {});
-export default useCliPath('cardano-cli');
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFlBQVksRUFBRSxNQUFNLGlCQUFpQixDQUFBO0FBQzlDLE9BQU8sRUFBRSxPQUFPLEVBQUUsTUFBTSxXQUFXLENBQUE7QUFDbkMsT0FBTyxFQUFFLEdBQUcsRUFBRSxNQUFNLE9BQU8sQ0FBQTtBQUMzQixPQUFPLEVBQUUsV0FBVyxFQUFFLE1BQU0sZUFBZSxDQUFBO0FBQzNDLE9BQU8sRUFBRSxJQUFJLEVBQUUsTUFBTSxRQUFRLENBQUE7QUFDN0IsT0FBTyxFQUFFLFNBQVMsRUFBRSxNQUFNLGNBQWMsQ0FBQTtBQUN4QyxPQUFPLEVBQUUsS0FBSyxFQUFFLE1BQU0sU0FBUyxDQUFBO0FBQy9CLE9BQU8sRUFBRSxPQUFPLEVBQUUsTUFBTSxXQUFXLENBQUE7QUFDbkMsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGNBQWMsQ0FBQTtBQUN6QyxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sWUFBWSxDQUFBO0FBRXJDLE1BQU0sQ0FBQyxNQUFNLFVBQVUsR0FBRztJQUN6QiwrQkFBK0I7SUFDL0IsT0FBTztJQUVQLDZCQUE2QjtJQUM3QixlQUFlLEVBQUUsWUFBWTtJQUU3QiwyQkFBMkI7SUFDM0IsR0FBRztJQUVILDJCQUEyQjtJQUMzQixXQUFXO0lBRVgsOEJBQThCO0lBQzlCLElBQUk7SUFFSiwwQkFBMEI7SUFDMUIsWUFBWSxFQUFFLFNBQVM7SUFFdkIsa0pBQWtKO0lBQ2xKLEtBQUs7SUFFTCw2QkFBNkI7SUFDN0IsT0FBTztJQUVQLDBCQUEwQjtJQUMxQixVQUFVO0lBRVYsMEhBQTBIO0lBQzFILFdBQVcsRUFBRSxRQUFRO0NBQ3JCLENBQUE7QUFjRCxNQUFNLENBQUMsTUFBTSxVQUFVLEdBQUcsQ0FBQyxJQUFZLEVBQUUsRUFBRSxDQUMxQyxNQUFNLENBQUMsT0FBTyxDQUFDLFVBQVUsQ0FBQyxDQUFDLE1BQU0sQ0FBYSxDQUFDLEdBQUcsRUFBRSxDQUFDLEdBQUcsRUFBRSxXQUFXLENBQUMsRUFBRSxFQUFFO0lBQ3pFLEdBQUcsQ0FBQyxHQUF1QixDQUFDLEdBQUcsTUFBTSxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsQ0FBQyxNQUFNLENBQ2hFLENBQUMsR0FBRyxFQUFFLENBQUMsR0FBRyxFQUFFLEdBQUcsQ0FBQyxFQUFFLEVBQUU7UUFDbkIsR0FBRyxDQUFDLEdBQUcsQ0FBQyxHQUFHLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQTtRQUNwQixPQUFPLEdBQUcsQ0FBQTtJQUNYLENBQUMsRUFDRCxFQUFFLENBQ0YsQ0FBQTtJQUNELE9BQU8sR0FBRyxDQUFBO0FBQ1gsQ0FBQyxFQUFFLEVBQWdCLENBQUMsQ0FBQTtBQUVyQixlQUFlLFVBQVUsQ0FBQyxhQUFhLENBQUMsQ0FBQSJ9
+import { commandFunction } from './command';
+export const cardanoCliCommand = (command, subCommands) => commandFunction(command, subCommands);
+export const cardanoCli = (cliPath) => ({
+    address: cardanoCliCommand('address', {
+        build: commandFunction('build'),
+        info: commandFunction('info'),
+        keyGen: commandFunction('keyGen'),
+        keyHash: commandFunction('keyHash'),
+    })(cliPath),
+    genesis: cardanoCliCommand('genesis', {
+        keyGenGenesis: commandFunction('keyGenGenesis'),
+        keyGenDelegate: commandFunction('keyGenDelegate'),
+        keyGenUtxo: commandFunction('keyGenUtxo'),
+        keyHash: commandFunction('keyHash'),
+        getVerKey: commandFunction('getVerKey'),
+        initialAddr: commandFunction('initialAddr'),
+        initialTxin: commandFunction('initialTxin'),
+        create: commandFunction('create'),
+        createStaked: commandFunction('createStaked'),
+        hash: commandFunction('hash'),
+    })(cliPath),
+    governance: cardanoCliCommand('governance', {
+        createMirCertificate: commandFunction('createMirCertificate'),
+        createGenesisKeyDelegationCertificate: commandFunction('createGenesisKeyDelegationCertificate'),
+        createUpdateProposal: commandFunction('createUpdateProposal'),
+    })(cliPath),
+    key: cardanoCliCommand('key', {
+        verificationKey: commandFunction('verificationKey'),
+        nonExtendedKey: commandFunction('nonExtendedKey'),
+        convertByronKey: commandFunction('convertByronKey'),
+        convertByronGenesisVkey: commandFunction('convertByronGenesisVkey'),
+        convertItnKey: commandFunction('convertItnKey'),
+        convertItnExtendedKey: commandFunction('convertItnExtendedKey'),
+        convertItnBip32Key: commandFunction('convertItnBip32Key'),
+        convertCardanoAddressKey: commandFunction('convertCardanoAddressKey'),
+    })(cliPath),
+    node: cardanoCliCommand('node', {
+        keyGen: commandFunction('keyGen'),
+        keyGenKes: commandFunction('keyGenKes'),
+        keyGenVrf: commandFunction('keyGenVrf'),
+        keyHashVrf: commandFunction('keyHashVrf'),
+        newCounter: commandFunction('newCounter'),
+        issueOpCert: commandFunction('issueOpCert'),
+    })(cliPath),
+    query: cardanoCliCommand('query', {
+        protocolParameters: commandFunction('protocolParameters'),
+        tip: commandFunction('tip'),
+        stakeDistribution: commandFunction('stakeDistribution'),
+        stakeAddressInfo: commandFunction('stakeAddressInfo'),
+        utxo: commandFunction('utxo'),
+        ledgerState: commandFunction('ledgerState'),
+        protocolState: commandFunction('protocolState'),
+        stakeSnapshot: commandFunction('stakeSnapshot'),
+        poolParams: commandFunction('poolParams'),
+    })(cliPath),
+    stakeAddress: cardanoCliCommand('stakeAddress', {
+        keyGen: commandFunction('keyGen'),
+        build: commandFunction('build'),
+        keyHash: commandFunction('keyHash'),
+        registrationCertificate: commandFunction('registrationCertificate'),
+        deregistrationCertificate: commandFunction('deregistrationCertificate'),
+        delegationCertificate: commandFunction('delegationCertificate'),
+    })(cliPath),
+    stakePool: cardanoCliCommand('stakePool', {
+        registrationCertificate: commandFunction('registrationCertificate'),
+        deregistrationCertificate: commandFunction('deregistrationCertificate'),
+        id: commandFunction('id'),
+        metadataHash: commandFunction('metadataHash'),
+    })(cliPath),
+    textView: cardanoCliCommand('textView', {
+        decodeCbor: commandFunction('decodeCbor'),
+    })(cliPath),
+    transaction: cardanoCliCommand('transaction', {
+        buildRaw: commandFunction('buildRaw'),
+        sign: commandFunction('sign'),
+        witness: commandFunction('witness'),
+        assemble: commandFunction('assemble'),
+        submit: commandFunction('submit'),
+        policyid: commandFunction('policyid'),
+        calculateMinFee: commandFunction('calculateMinFee'),
+        calculateMinValue: commandFunction('calculateMinValue'),
+        txid: commandFunction('txid'),
+        view: commandFunction('view'),
+    })(cliPath),
+});
+export default cardanoCli;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLGVBQWUsRUFBc0IsTUFBTSxXQUFXLENBQUE7QUE4Qy9ELE1BQU0sQ0FBQyxNQUFNLGlCQUFpQixHQUFHLENBY2hDLE9BQVUsRUFDVixXQUFnQixFQUNmLEVBQUUsQ0FBQyxlQUFlLENBQWMsT0FBTyxFQUFFLFdBQVcsQ0FBQyxDQUFBO0FBRXZELE1BQU0sQ0FBQyxNQUFNLFVBQVUsR0FBRyxDQUFDLE9BQWUsRUFBRSxFQUFFLENBQUMsQ0FBQztJQUMvQyxPQUFPLEVBQUUsaUJBQWlCLENBQUMsU0FBUyxFQUFFO1FBQ3JDLEtBQUssRUFBRSxlQUFlLENBQUMsT0FBTyxDQUFDO1FBQy9CLElBQUksRUFBRSxlQUFlLENBQUMsTUFBTSxDQUFDO1FBQzdCLE1BQU0sRUFBRSxlQUFlLENBQUMsUUFBUSxDQUFDO1FBQ2pDLE9BQU8sRUFBRSxlQUFlLENBQUMsU0FBUyxDQUFDO0tBQ25DLENBQUMsQ0FBQyxPQUFPLENBQUM7SUFDWCxPQUFPLEVBQUUsaUJBQWlCLENBQUMsU0FBUyxFQUFFO1FBQ3JDLGFBQWEsRUFBRSxlQUFlLENBQUMsZUFBZSxDQUFDO1FBQy9DLGNBQWMsRUFBRSxlQUFlLENBQUMsZ0JBQWdCLENBQUM7UUFDakQsVUFBVSxFQUFFLGVBQWUsQ0FBQyxZQUFZLENBQUM7UUFDekMsT0FBTyxFQUFFLGVBQWUsQ0FBQyxTQUFTLENBQUM7UUFDbkMsU0FBUyxFQUFFLGVBQWUsQ0FBQyxXQUFXLENBQUM7UUFDdkMsV0FBVyxFQUFFLGVBQWUsQ0FBQyxhQUFhLENBQUM7UUFDM0MsV0FBVyxFQUFFLGVBQWUsQ0FBQyxhQUFhLENBQUM7UUFDM0MsTUFBTSxFQUFFLGVBQWUsQ0FBQyxRQUFRLENBQUM7UUFDakMsWUFBWSxFQUFFLGVBQWUsQ0FBQyxjQUFjLENBQUM7UUFDN0MsSUFBSSxFQUFFLGVBQWUsQ0FBQyxNQUFNLENBQUM7S0FDN0IsQ0FBQyxDQUFDLE9BQU8sQ0FBQztJQUNYLFVBQVUsRUFBRSxpQkFBaUIsQ0FBQyxZQUFZLEVBQUU7UUFDM0Msb0JBQW9CLEVBQUUsZUFBZSxDQUFDLHNCQUFzQixDQUFDO1FBQzdELHFDQUFxQyxFQUFFLGVBQWUsQ0FBQyx1Q0FBdUMsQ0FBQztRQUMvRixvQkFBb0IsRUFBRSxlQUFlLENBQUMsc0JBQXNCLENBQUM7S0FDN0QsQ0FBQyxDQUFDLE9BQU8sQ0FBQztJQUNYLEdBQUcsRUFBRSxpQkFBaUIsQ0FBQyxLQUFLLEVBQUU7UUFDN0IsZUFBZSxFQUFFLGVBQWUsQ0FBQyxpQkFBaUIsQ0FBQztRQUNuRCxjQUFjLEVBQUUsZUFBZSxDQUFDLGdCQUFnQixDQUFDO1FBQ2pELGVBQWUsRUFBRSxlQUFlLENBQUMsaUJBQWlCLENBQUM7UUFDbkQsdUJBQXVCLEVBQUUsZUFBZSxDQUFDLHlCQUF5QixDQUFDO1FBQ25FLGFBQWEsRUFBRSxlQUFlLENBQUMsZUFBZSxDQUFDO1FBQy9DLHFCQUFxQixFQUFFLGVBQWUsQ0FBQyx1QkFBdUIsQ0FBQztRQUMvRCxrQkFBa0IsRUFBRSxlQUFlLENBQUMsb0JBQW9CLENBQUM7UUFDekQsd0JBQXdCLEVBQUUsZUFBZSxDQUFDLDBCQUEwQixDQUFDO0tBQ3JFLENBQUMsQ0FBQyxPQUFPLENBQUM7SUFDWCxJQUFJLEVBQUUsaUJBQWlCLENBQUMsTUFBTSxFQUFFO1FBQy9CLE1BQU0sRUFBRSxlQUFlLENBQUMsUUFBUSxDQUFDO1FBQ2pDLFNBQVMsRUFBRSxlQUFlLENBQUMsV0FBVyxDQUFDO1FBQ3ZDLFNBQVMsRUFBRSxlQUFlLENBQUMsV0FBVyxDQUFDO1FBQ3ZDLFVBQVUsRUFBRSxlQUFlLENBQUMsWUFBWSxDQUFDO1FBQ3pDLFVBQVUsRUFBRSxlQUFlLENBQUMsWUFBWSxDQUFDO1FBQ3pDLFdBQVcsRUFBRSxlQUFlLENBQUMsYUFBYSxDQUFDO0tBQzNDLENBQUMsQ0FBQyxPQUFPLENBQUM7SUFDWCxLQUFLLEVBQUUsaUJBQWlCLENBQUMsT0FBTyxFQUFFO1FBQ2pDLGtCQUFrQixFQUFFLGVBQWUsQ0FBQyxvQkFBb0IsQ0FBQztRQUN6RCxHQUFHLEVBQUUsZUFBZSxDQUFDLEtBQUssQ0FBQztRQUMzQixpQkFBaUIsRUFBRSxlQUFlLENBQUMsbUJBQW1CLENBQUM7UUFDdkQsZ0JBQWdCLEVBQUUsZUFBZSxDQUFDLGtCQUFrQixDQUFDO1FBQ3JELElBQUksRUFBRSxlQUFlLENBQUMsTUFBTSxDQUFDO1FBQzdCLFdBQVcsRUFBRSxlQUFlLENBQUMsYUFBYSxDQUFDO1FBQzNDLGFBQWEsRUFBRSxlQUFlLENBQUMsZUFBZSxDQUFDO1FBQy9DLGFBQWEsRUFBRSxlQUFlLENBQUMsZUFBZSxDQUFDO1FBQy9DLFVBQVUsRUFBRSxlQUFlLENBQUMsWUFBWSxDQUFDO0tBQ3pDLENBQUMsQ0FBQyxPQUFPLENBQUM7SUFDWCxZQUFZLEVBQUUsaUJBQWlCLENBQUMsY0FBYyxFQUFFO1FBQy9DLE1BQU0sRUFBRSxlQUFlLENBQUMsUUFBUSxDQUFDO1FBQ2pDLEtBQUssRUFBRSxlQUFlLENBQUMsT0FBTyxDQUFDO1FBQy9CLE9BQU8sRUFBRSxlQUFlLENBQUMsU0FBUyxDQUFDO1FBQ25DLHVCQUF1QixFQUFFLGVBQWUsQ0FBQyx5QkFBeUIsQ0FBQztRQUNuRSx5QkFBeUIsRUFBRSxlQUFlLENBQUMsMkJBQTJCLENBQUM7UUFDdkUscUJBQXFCLEVBQUUsZUFBZSxDQUFDLHVCQUF1QixDQUFDO0tBQy9ELENBQUMsQ0FBQyxPQUFPLENBQUM7SUFDWCxTQUFTLEVBQUUsaUJBQWlCLENBQUMsV0FBVyxFQUFFO1FBQ3pDLHVCQUF1QixFQUFFLGVBQWUsQ0FBQyx5QkFBeUIsQ0FBQztRQUNuRSx5QkFBeUIsRUFBRSxlQUFlLENBQUMsMkJBQTJCLENBQUM7UUFDdkUsRUFBRSxFQUFFLGVBQWUsQ0FBQyxJQUFJLENBQUM7UUFDekIsWUFBWSxFQUFFLGVBQWUsQ0FBQyxjQUFjLENBQUM7S0FDN0MsQ0FBQyxDQUFDLE9BQU8sQ0FBQztJQUNYLFFBQVEsRUFBRSxpQkFBaUIsQ0FBQyxVQUFVLEVBQUU7UUFDdkMsVUFBVSxFQUFFLGVBQWUsQ0FBQyxZQUFZLENBQUM7S0FDekMsQ0FBQyxDQUFDLE9BQU8sQ0FBQztJQUNYLFdBQVcsRUFBRSxpQkFBaUIsQ0FBQyxhQUFhLEVBQUU7UUFDN0MsUUFBUSxFQUFFLGVBQWUsQ0FBQyxVQUFVLENBQUM7UUFDckMsSUFBSSxFQUFFLGVBQWUsQ0FBQyxNQUFNLENBQUM7UUFDN0IsT0FBTyxFQUFFLGVBQWUsQ0FBQyxTQUFTLENBQUM7UUFDbkMsUUFBUSxFQUFFLGVBQWUsQ0FBQyxVQUFVLENBQUM7UUFDckMsTUFBTSxFQUFFLGVBQWUsQ0FBQyxRQUFRLENBQUM7UUFDakMsUUFBUSxFQUFFLGVBQWUsQ0FBQyxVQUFVLENBQUM7UUFDckMsZUFBZSxFQUFFLGVBQWUsQ0FBQyxpQkFBaUIsQ0FBQztRQUNuRCxpQkFBaUIsRUFBRSxlQUFlLENBQUMsbUJBQW1CLENBQUM7UUFDdkQsSUFBSSxFQUFFLGVBQWUsQ0FBQyxNQUFNLENBQUM7UUFDN0IsSUFBSSxFQUFFLGVBQWUsQ0FBQyxNQUFNLENBQUM7S0FDN0IsQ0FBQyxDQUFDLE9BQU8sQ0FBQztDQUNYLENBQUMsQ0FBQTtBQUVGLGVBQWUsVUFBVSxDQUFBIn0=

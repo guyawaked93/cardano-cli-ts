@@ -1,6 +1,6 @@
 {
 	"name": "cardano-cli-ts",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"author": "Ícaro C. Capobianco",
 	"description": "Wrapping cardano-cli seemed like the lazy thing I would do",
 	"repository": {

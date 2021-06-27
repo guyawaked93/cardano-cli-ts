@@ -1,9 +1,2 @@
-export type OutputFormat = 'Hex' | 'Base64'
-
-export type DefaultOptions = {
-	'--help'?: boolean
-	'-h'?: boolean
-}
-export type Opts<
-	T extends Record<string, string | boolean | number>
-> = DefaultOptions & T
+export const kebabize = (str: string) =>
+	str.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? '-' : '') + $.toLowerCase())

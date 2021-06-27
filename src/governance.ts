@@ -1,16 +1,23 @@
-import { commandFunction } from './command'
-
-export const governance = {
+export type Commands = {
 	/** Create an MIR (Move Instantaneous Rewards) certificate */
-	'create-mir-certificate': commandFunction(
-		'governance create-mir-certificate'
-	),
+	createMirCertificate: {
+		/** Use the reserves pot. */
+		reserves: string
+		/** Use the treasury pot. */
+		treasury: string
+		/** Target stake address (bech32 format). */
+		stakeAddress: string
+		/** The reward for the relevant reward account. */
+		reward: string
+		/** The output file. */
+		outFile: string
+	}
 	/** Create a genesis key delegation certificate */
-	'create-genesis-key-delegation-certificate': commandFunction(
-		'governance create-genesis-key-delegation-certificate'
-	),
+	createGenesisKeyDelegationCertificate: {
+		outFile: string
+	}
 	/** Create an update proposal */
-	'create-update-proposal': commandFunction(
-		'governance create-update-proposal'
-	),
+	createUpdateProposal: {
+		outFile: string
+	}
 }

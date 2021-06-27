@@ -1,66 +1,63 @@
 /** Node operation commands */
-import { commandFunction } from './command'
-
-/** Node operation commands */
-export const node = {
+export type Commands = {
 	/** Create a key pair for a node operator's offline key and a new certificate issue counter */
-	'key-gen': commandFunction<{
+	keyGen: {
 		/** Filepath of the cold verification key. */
-		'--cold-verification-key-file': string
+		coldVerificationKeyFile: string
 		/** Filepath of the cold signing key. */
-		'--cold-signing-key-file': string
+		coldSigningKeyFile: string
 		/** The file with the issue counter for the operational certificate. */
-		'--operational-certificate-issue-counter-file': string
-	}>('node key-gen'),
+		operationalCertificateIssueCounterFile: string
+	}
 	/** Create a key pair for a node KES operational key */
-	'key-gen-KES': commandFunction<{
+	keyGenKes: {
 		/** Output filepath of the verification key. */
-		'--verification-key-file': string
+		verificationKeyFile: string
 		/** Output filepath of the signing key. */
-		'--signing-key-file': string
-	}>('node key-gen-KES'),
+		signingKeyFile: string
+	}
 	/** Create a key pair for a node VRF operational key */
-	'key-gen-VRF': commandFunction<{
+	keyGenVrf: {
 		/** Output filepath of the verification key. */
-		'--verification-key-file': string
+		verificationKeyFile: string
 		/** Output filepath of the signing key. */
-		'--signing-key-file': string
-	}>('node key-gen-VRF'),
+		signingKeyFile: string
+	}
 	/** Print hash of a node's operational VRF key. */
-	'key-hash-VRF': commandFunction<{
+	keyHashVrf: {
 		/** Verification key (Bech32 or hex-encoded). */
-		'--verification-key': string
+		verificationKey: string
 		/** Input filepath of the verification key. */
-		'--verification-key-file': string
+		verificationKeyFile: string
 		/** Optional output file. Default is to write to stdout. */
-		'--out-file': string
-	}>('node key-hash-VRF'),
+		outFile: string
+	}
 	/** Create a new certificate issue counter */
-	'new-counter': commandFunction<{
+	newCounter: {
 		/** Stake pool verification key (Bech32 or hex-encoded). */
-		'--stake-pool-verification-key': string
+		stakePoolVerificationKey: string
 		/** Genesis delegate verification key (hex-encoded). */
-		'--genesis-delegate-verification-key': string
+		genesisDelegateVerificationKey: string
 		/** Filepath of the cold verification key. */
-		'--cold-verification-key-file': string
+		coldVerificationKeyFile: string
 		/** The next certificate issue counter value to use. */
-		'--counter-value': number
+		counterValue: number
 		/** The file with the issue counter for the operational certificate. */
-		'--operational-certificate-issue-counter-file': string
-	}>('node new-counter'),
+		operationalCertificateIssueCounterFile: string
+	}
 	/** Issue a node operational certificate */
-	'issue-op-cert': commandFunction<{
+	issueOpCert: {
 		/** A Bech32 or hex-encoded hot KES verification key. */
-		'--kes-verification-key': string
+		kesVerificationKey: string
 		/** Filepath of the hot KES verification key. */
-		'--kes-verification-key-file': string
+		kesVerificationKeyFile: string
 		/** Filepath of the cold signing key. */
-		'--cold-signing-key-file': string
+		coldSigningKeyFile: string
 		/** The file with the issue counter for the operational certificate. */
-		'--operational-certificate-issue-counter-file': string
+		operationalCertificateIssueCounterFile: string
 		/** The start of the KES key validity period. */
-		'--kes-period': string
+		kesPeriod: string
 		/** The output file */
-		'--out-file': string
-	}>('node issue-op-cert'),
+		outFile: string
+	}
 }

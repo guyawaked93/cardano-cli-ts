@@ -1,60 +1,54 @@
 /** Payment address commands */
-import { commandFunction } from './command'
-
-/** Payment address commands */
-export const address = {
+export type Commands = {
 	/** Create an address key pair. */
-	'key-gen': commandFunction<{
+	keyGen: {
 		/** Use a normal Shelley-era key (default). */
-		'--normal-key'?: boolean
+		normalKey?: boolean
 		/** Use an extended ed25519 Shelley-era key. */
-		'--extended-key'?: boolean
+		extendedKey?: boolean
 		/** Use a Byron-era key. */
-		'--byron-key'?: boolean
+		byronKey?: boolean
 		/** Output filepath of the verification key. */
-		'--verification-key-file': string
+		verificationKeyFile: string
 		/** Output filepath of the signing key. */
-		'--signing-key-file': string
-	}>('address key-gen'),
+		signingKeyFile: string
+	}
 	/** Print the hash of an address key. */
-	'key-hash': commandFunction<{
+	keyHash: {
 		/** STRING Payment verification key (Bech32-encoded) */
-		'--payment-verification-key': string
+		paymentVerificationKey: string
 		/** Filepath of the payment verification key. */
-		'--payment-verification-key-file': string
+		paymentVerificationKeyFile: string
 		/** Optional output file. Default is to write to stdout. */
-		'--out-file'?: string
-	}>('address key-hash'),
+		outFile?: string
+	}
 
 	/** Build a Shelley payment address, with optional delegation to a stake address. */
-	build: commandFunction<{
+	build: {
 		/** Payment verification key (Bech32-encoded) */
-		'--payment-verification-key': string
+		paymentVerificationKey: string
 		/** Filepath of the payment verification key. */
-		'--payment-verification-key-file': string
+		paymentVerificationKeyFile: string
 		/** Filepath of the payment script. */
-		'--payment-script-file': string
+		paymentScriptFile: string
 		/** Stake verification key (Bech32 or hex-encoded). */
-		'--stake-verification-key': string
+		stakeVerificationKey: string
 		/** Filepath of the staking verification key. */
-		'--stake-verification-key-file': string
+		stakeVerificationKeyFile: string
 		/** Filepath of the staking script. */
-		'--stake-script-file': string
+		stakeScriptFile: string
 		/** Use the mainnet magic id. */
-		'--mainnet'?: boolean
+		mainnet?: boolean
 		/** Specify a testnet magic id. */
-		'--testnet-magic'?: string
+		testnetMagic?: string
 		/** Optional output file. Default is to write to stdout. */
-		'--out-file'?: string
-	}>('address build'),
+		outFile?: string
+	}
 	/** Print information about an address. */
-	info: commandFunction<{
+	info: {
 		/** A Cardano address */
-		'--address': string
+		address: string
 		/** Optional output file. Default is to write to stdout. */
-		'--out-file'?: string
-	}>('address info'),
-
-	/** Build a Shelley script address. (deprecated; use 'build' instead with '--payment-script-file') */
-	'build-script': null,
+		outFile?: string
+	}
 }

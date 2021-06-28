@@ -72,12 +72,12 @@ export const commandFunction =
 		command = Object.entries(options ?? {}).reduce<string>((acc, [key, value]) => {
 			switch (typeof value) {
 				case 'boolean':
-					if (value) acc += `\n --${kebabize(key)}`
+					if (value) acc += ` --${kebabize(key)}`
 					break
 				case 'string':
 				case 'number':
 				case 'bigint':
-					acc += `\n --${kebabize(key.toString())} ${value}`
+					acc += ` --${kebabize(key.toString())} ${value}`
 					break
 				default:
 					break
@@ -88,10 +88,13 @@ export const commandFunction =
 			new Promise((resolve, reject) => {
 				exec(command, (error, stdout, stderr) => {
 					if (error) {
+						console.log('[error]')
 						reject(error)
 					} else if (stderr) {
+						console.log('[stderr]')
 						reject(stderr)
 					} else {
+						console.log('[stdout]')
 						resolve(stdout)
 					}
 				})

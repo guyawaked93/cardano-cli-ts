@@ -4,15 +4,17 @@ Simple TypeScript library wrapping cardano-cli
 
 ```typescript
 import cardanoCli from 'cardano-cli-ts'
-const myCardanoCli = cardanoCli('my-path-to/cardano-cli.exe')
-const { command, run } = myCardanoCli.address().build({
-	mainnet: true,
-	...options,
-})
-console.log(command) // Output: my-path-to/cardano-cli.exe address build --mainnet
+import path from 'path'
 
-run().then( stdout => ... )
+const cli = cardanoCli(path.resolve('cardano-cli.exe'))
 
+const buildAddress = cli.address().build({ mainnet: true, ...options })
+
+// Get the string
+const buildAddress = myCommand.command // cardano-cli.exe address build --mainnet --other-options...
+
+// Async stuff
+buildAddress.run().then((stdout: string) => null)
 ```
 
 ## TODO(s)

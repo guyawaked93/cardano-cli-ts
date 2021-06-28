@@ -1,15 +1,14 @@
 import cardanoCli from '.'
+import path from 'path'
 
-const cli = cardanoCli('../cardano-bin/cardano-cli')
+const cli = cardanoCli(path.resolve(path.dirname(__dirname), 'cardano-bin/cardano-cli.exe'))
 
-const myCommand = cli.address().build({
-	mainnet: true,
-	paymentScriptFile: '',
-	paymentVerificationKey: '',
-	paymentVerificationKeyFile: '',
-	stakeScriptFile: '',
-	stakeVerificationKey: '',
-	stakeVerificationKeyFile: '',
-}).command
+const myCommand = cli
+	.address({
+		help: true,
+	})
+	.run()
+	.then(console.log)
+	.catch(console.log)
 
 console.log(myCommand)

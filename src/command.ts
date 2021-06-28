@@ -69,7 +69,7 @@ export const commandFunction =
 	) =>
 	(context: string) =>
 	(options?: DefaultOptions & O) => {
-		command += Object.entries(options ?? {}).reduce<string>((acc, [key, value]) => {
+		command = Object.entries(options ?? {}).reduce<string>((acc, [key, value]) => {
 			switch (typeof value) {
 				case 'boolean':
 					if (value) acc += `\n --${kebabize(key)}`

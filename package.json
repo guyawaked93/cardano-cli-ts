@@ -1,6 +1,6 @@
 {
 	"name": "cardano-cli-ts",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Ícaro C. Capobianco",
 	"description": "Wrapping cardano-cli seemed like the lazy thing I would do",
 	"repository": {
@@ -13,7 +13,8 @@
 	"scripts": {
 		"watch-es5": "tsc -p tsconfig.json --target es5 --outDir es5 --module commonjs --watch",
 		"watch-es6": "tsc -p tsconfig.json --target es6 --outDir es6 --module es6 --watch",
-		"watch": "concurrently -n w: npm:watch-*"
+		"watch": "concurrently -n w: npm:watch-*",
+		"test": "ts-node-dev src/test.ts"
 	},
 	"devDependencies": {
 		"concurrently": "^6.1.0",

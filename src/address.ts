@@ -22,7 +22,6 @@ export type Commands = {
 		/** Optional output file. Default is to write to stdout. */
 		outFile?: string
 	}
-
 	/** Build a Shelley payment address, with optional delegation to a stake address. */
 	build: {
 		/** Payment verification key (Bech32-encoded) */

@@ -17,6 +17,14 @@ const buildAddress = myCommand.command // cardano-cli.exe address build --mainne
 buildAddress.run().then((stdout: string) => null)
 ```
 
+## Import, Require and Types
+The source code is written in typescript, it's transpiled to:
+ES5 (CommonJS) under /es5
+ES6 (ES Modules) under /es6
+and the types are under /types
+
+You can import types from cardano-cli-ts/types on front-end apps if you wish to use the types somewhere on your frontend app.
+
 ## TODO(s)
 
 Complete the command typings (missing genesis and many options are typed as string but could probably be boolean or number)

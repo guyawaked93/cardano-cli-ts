@@ -28,7 +28,15 @@ export declare const cardanoCliCommand: <C extends keyof Commands, S extends Mat
     [x: string]: any;
 }>, SC extends { [K in keyof S]: any; } = { [K_1 in keyof S]: any; }>(command: C, subCommands?: SC | undefined) => (context: string) => any;
 export declare const cardanoCli: (cliPath: string) => {
-    address: (options?: any) => any;
+    address: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<Address.Commands>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        keyGen: any;
+        keyHash: any;
+        build: any;
+        info: any;
+    };
     genesis: (options?: any) => any;
     governance: (options?: any) => any;
     key: (options?: any) => any;

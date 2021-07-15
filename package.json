@@ -9,10 +9,12 @@
 	"license": "MIT",
 	"main": "es5/index.js",
 	"module": "es6/index.js",
+	"require": "es5/index.js",
 	"source": "src/index.ts",
 	"scripts": {
-		"watch-es5": "tsc -p tsconfig.json --target es5 --outDir es5 --module commonjs --watch",
-		"watch-es6": "tsc -p tsconfig.json --target es6 --outDir es6 --module es6 --watch",
+		"watch-es5": "tsc -p tsconfig.json --target es5 --outDir es5 --module commonjs --watch --declaration false",
+		"watch-es6": "tsc -p tsconfig.json --target es6 --outDir es6 --module es6 --watch --declaration false",
+		"watch-types": "tsc -p tsconfig.json --target es6 --outDir es6 --module es6 --watch --declarationDir types --emitDeclarationOnly",
 		"watch": "concurrently -n w: npm:watch-*",
 		"test": "ts-node-dev src/test.ts"
 	},

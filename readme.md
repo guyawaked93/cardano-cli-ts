@@ -1,7 +1,7 @@
 Simple TypeScript library wrapping cardano-cli
 
 ## Usage
-
+Example for someone on windows, the cardano-cli.exe would be replaced by the path to your cardano-cli binary file
 ```typescript
 import cardanoCli from 'cardano-cli-ts'
 import path from 'path'

@@ -1,5 +1,17 @@
 import { exec } from 'child_process'
 import { kebabize } from './common'
+import {
+	Address,
+	Genesis,
+	Governance,
+	Key,
+	Node,
+	Query,
+	StakeAddress,
+	StakePool,
+	TextView,
+	Transaction,
+} from './modules'
 
 export type OutputFormat = 'Hex' | 'Base64'
 
@@ -88,13 +100,10 @@ export const commandFunction =
 			new Promise((resolve, reject) => {
 				exec(command, (error, stdout, stderr) => {
 					if (error) {
-						console.log('[error]')
 						reject(error)
 					} else if (stderr) {
-						console.log('[stderr]')
 						reject(stderr)
 					} else {
-						console.log('[stdout]')
 						resolve(stdout)
 					}
 				})
@@ -121,3 +130,53 @@ export type ExcludeMatchingProperties<T, V> = Pick<
 		[K in keyof T]-?: T[K] extends V ? never : K
 	}[keyof T]
 >
+
+export type Commands = {
+	/** Payment address commands */
+	address: Address.Commands
+
+	/** Stake address commands */
+	stakeAddress: StakeAddress.Commands
+
+	/** Key utility commands */
+	key: Key.Commands
+
+	/** Transaction commands */
+	transaction: Transaction.Commands
+
+	/** Node operation commands */
+	node: Node.Commands
+
+	/** Stake pool commands */
+	stakePool: StakePool.Commands
+
+	/** Node query commands. Will query the local node whose Unix domain socket is obtained from the CARDANO_NODE_SOCKET_PATH enviromnent variable. */
+	query: Query.Commands
+
+	/** Genesis block commands */
+	genesis: Genesis.Commands
+
+	/** Governance commands */
+	governance: Governance.Commands
+
+	/** Commands for dealing with Shelley TextView files. Transactions, addresses etc are stored on disk as TextView files. */
+	textView: TextView.Commands
+}
+
+export const cardanoCliCommand = <
+	C extends keyof Commands,
+	S extends MatchingProperties<Commands[C], { [K in string]: any }> = MatchingProperties<
+		Commands[C],
+		{ [K in string]: any }
+	>,
+	SC extends {
+		// @ts-expect-error
+		[K in keyof S]: ReturnType<CommandFunction<S[K]>>
+	} = {
+		// @ts-expect-error
+		[K in keyof S]: ReturnType<CommandFunction<S[K]>>
+	}
+>(
+	command: C,
+	subCommands?: SC
+) => commandFunction<Commands[C]>(command, subCommands)

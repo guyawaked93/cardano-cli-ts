@@ -13,7 +13,7 @@ About Step 1:
 You will see a file named after each main command of cardano-cli in src/, each of those files exports a type named "Commands", which is type that defines a dictionary with sub-commands and their options
 
 ## Usage
-
+Example for someone on windows, the cardano-cli.exe would be replaced with the path to your cardano-cli binary file
 ```typescript
 import cardanoCli from 'cardano-cli-ts'
 import path from 'path'

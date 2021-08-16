@@ -6,15 +6,15 @@ export type Commands = {
 		/** Filepath of the stake pool verification key. */
 		coldVerificationKeyFile: string
 		/** verification key (Bech32 or hex-encoded). */
-		vrfVerificationKey: string
+		vrfVerificationKey?: string
 		/** Filepath of the VRF verification key. */
 		vrfVerificationKeyFile: string
-		/** The stake pool's pledge. */
-		poolPledge: string
-		/** The stake pool's cost. */
-		poolCost: string
-		/** The stake pool's margin. */
-		poolMargin: string
+		/** The stake pool's pledge. AMOUNT TO PLEDGE IN LOVELACE */
+		poolPledge: number
+		/** The stake pool's cost. POOL COST PER EPOCH IN LOVELACE */
+		poolCost: number
+		/** The stake pool's margin. POOL COST PER EPOCH IN PERCENTAGE */
+		poolMargin: number
 		/** Reward account stake verification key (Bech32 or hex-encoded). */
 		poolRewardAccountVerificationKey: string
 		/** Filepath of the reward account stake verification key. */
@@ -26,21 +26,21 @@ export type Commands = {
 		/** The stake pool relay's IPv4 address */
 		poolRelayIpv4: string
 		/** The stake pool relay's IPv6 address */
-		poolRelayIpv6: string
+		poolRelayIpv6?: string
 		/** The stake pool relay's port */
 		poolRelayPort: number
 		/** The stake pool relay's DNS name that corresponds to an A or AAAA DNS record */
 		singleHostPoolRelay: string
 		/** The stake pool relay's DNS name that corresponds to an SRV DNS record */
-		multiHostPoolRelay: string
+		multiHostPoolRelay?: string
 		/** Pool metadata URL (maximum length of 64 characters). */
 		metadataUrl: string
 		/** Pool metadata hash. */
 		metadataHash: string
 		/** Use the mainnet magic id. */
-		mainnet: string
+		mainnet: boolean
 		/** Specify a testnet magic id. */
-		testnetMagic: string
+		testnetMagic?: string
 		/** The output file. */
 		outFile: string
 	}

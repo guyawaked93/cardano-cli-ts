@@ -1,9 +1,28 @@
-export declare const cardanoCli: (cliPath: string) => {
-    address: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./address").Commands>) | undefined) => {
+export declare const cardanoCli: (cliPath?: string) => {
+    /** Payment address commands */
+    address: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./address").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
         command: string;
         run: () => Promise<unknown>;
     } & {
-        build: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        keyGen: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            normalKey?: boolean | undefined;
+            extendedKey?: boolean | undefined;
+            byronKey?: boolean | undefined;
+            verificationKeyFile: string;
+            signingKeyFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyHash: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            paymentVerificationKey: string;
+            paymentVerificationKeyFile: string;
+            outFile?: string | undefined;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        build: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             paymentVerificationKey: string;
             paymentVerificationKeyFile: string;
             paymentScriptFile: string;
@@ -13,127 +32,96 @@ export declare const cardanoCli: (cliPath: string) => {
             mainnet?: boolean | undefined;
             testnetMagic?: string | undefined;
             outFile?: string | undefined;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        info: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        info: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             address: string;
             outFile?: string | undefined;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        keyGen: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            normalKey?: boolean | undefined;
-            extendedKey?: boolean | undefined;
-            byronKey?: boolean | undefined;
+    };
+    /** Stake address commands */
+    stakeAddress: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./stake-address").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        keyGen: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             verificationKeyFile: string;
             signingKeyFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        keyHash: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            paymentVerificationKey: string;
-            paymentVerificationKeyFile: string;
+        keyHash: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakeVerificationKey: string;
+            stakeVerificationKeyFile: string;
             outFile?: string | undefined;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        build: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakeVerificationKey: string;
+            stakeVerificationKeyFile: string;
+            mainnet?: boolean | undefined;
+            testnetMagic?: string | undefined;
+            outFile?: string | undefined;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        registrationCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakeVerificationKey: string;
+            stakeVerificationKeyFile: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        deregistrationCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakeVerificationKey: string;
+            stakeVerificationKeyFile: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        delegationCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakeVerificationKey: string;
+            stakeVerificationKeyFile: string;
+            stakePoolVerificationKey: string;
+            coldVerificationKeyFile: string;
+            stakePoolIdStakePoolId: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
     };
-    genesis: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./genesis").Commands>) | undefined) => {
+    /** Key utility commands */
+    key: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./key").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
         command: string;
         run: () => Promise<unknown>;
     } & {
-        keyHash: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyGenGenesis: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyGenDelegate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyGenUtxo: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        getVerKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        initialAddr: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        initialTxin: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        create: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        createStaked: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        hash: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{}>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    governance: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./governance").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        createMirCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            reserves: string;
-            treasury: string;
-            stakeAddress: string;
-            reward: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        createGenesisKeyDelegationCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        createUpdateProposal: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    key: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./key").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        verificationKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        verificationKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             signingKeyFile: string;
             verificationKeyFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        nonExtendedKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        nonExtendedKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             extendedVerificationKeyFile: string;
             verificationKeyFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        convertByronKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        convertByronKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             password: string;
             byronPaymentKeyType: string;
             legacyByronPaymentKeyType: string;
@@ -144,351 +132,57 @@ export declare const cardanoCli: (cliPath: string) => {
             byronSigningKeyFile: string;
             byronVerificationKeyFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        convertByronGenesisVkey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        convertByronGenesisVkey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             byronGenesisVerificationKey: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        convertItnKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        convertItnKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             itnSigningKeyFile: string;
             itnVerificationKeyFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        convertItnExtendedKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        convertItnExtendedKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             itnSigningKeyFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        convertItnBip32Key: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        convertItnBip32Key: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             itnSigningKeyFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        convertCardanoAddressKey: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        convertCardanoAddressKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             shelleyPaymentKey: string;
             shelleyStakeKey: string;
             icarusPaymentKey: string;
             byronPaymentKey: string;
             signingKeyFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
     };
-    node: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./node").Commands>) | undefined) => {
+    /** Transaction commands */
+    transaction: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./transaction").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
         command: string;
         run: () => Promise<unknown>;
     } & {
-        keyGen: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            coldVerificationKeyFile: string;
-            coldSigningKeyFile: string;
-            operationalCertificateIssueCounterFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyGenKes: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            verificationKeyFile: string;
-            signingKeyFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyGenVrf: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            verificationKeyFile: string;
-            signingKeyFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyHashVrf: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            verificationKey: string;
-            verificationKeyFile: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        newCounter: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakePoolVerificationKey: string;
-            genesisDelegateVerificationKey: string;
-            coldVerificationKeyFile: string;
-            counterValue: number;
-            operationalCertificateIssueCounterFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        issueOpCert: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            kesVerificationKey: string;
-            kesVerificationKeyFile: string;
-            coldSigningKeyFile: string;
-            operationalCertificateIssueCounterFile: string;
-            kesPeriod: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    query: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./query").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        protocolParameters: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        tip: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        stakeDistribution: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        stakeAddressInfo: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            address: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        utxo: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            address: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        ledgerState: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        protocolState: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        stakeSnapshot: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            stakePoolIdStakePoolId: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        poolParams: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            shelleyMode: string;
-            byronMode: string;
-            epochSlots: string;
-            cardanoMode: string;
-            mainnet: string;
-            testnetMagic: string;
-            stakePoolIdStakePoolId: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    stakeAddress: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./stake-address").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        build: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakeVerificationKey: string;
-            stakeVerificationKeyFile: string;
-            mainnet?: boolean | undefined;
-            testnetMagic?: string | undefined;
-            outFile?: string | undefined;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyGen: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            verificationKeyFile: string;
-            signingKeyFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        keyHash: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakeVerificationKey: string;
-            stakeVerificationKeyFile: string;
-            outFile?: string | undefined;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        registrationCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakeVerificationKey: string;
-            stakeVerificationKeyFile: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        deregistrationCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakeVerificationKey: string;
-            stakeVerificationKeyFile: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        delegationCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakeVerificationKey: string;
-            stakeVerificationKeyFile: string;
-            stakePoolVerificationKey: string;
-            coldVerificationKeyFile: string;
-            stakePoolIdStakePoolId: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    stakePool: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./stake-pool").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        registrationCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakePoolVerificationKey: string;
-            coldVerificationKeyFile: string;
-            vrfVerificationKey: string;
-            vrfVerificationKeyFile: string;
-            poolPledge: string;
-            poolCost: string;
-            poolMargin: string;
-            poolRewardAccountVerificationKey: string;
-            poolRewardAccountVerificationKeyFile: string;
-            poolOwnerVerificationKey: string;
-            poolOwnerStakeVerificationKeyFile: string;
-            poolRelayIpv4: string;
-            poolRelayIpv6: string;
-            poolRelayPort: number;
-            singleHostPoolRelay: string;
-            multiHostPoolRelay: string;
-            metadataUrl: string;
-            metadataHash: string;
-            mainnet: string;
-            testnetMagic: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        deregistrationCertificate: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakePoolVerificationKey: string;
-            coldVerificationKeyFile: string;
-            epoch: number;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        id: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            stakePoolVerificationKey: string;
-            coldVerificationKeyFile: string;
-            outputFormat: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-        metadataHash: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            poolMetadataFile: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    textView: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./text-view").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        decodeCbor: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
-            inFile: string;
-            outFile: string;
-        }>) | undefined) => {
-            command: string;
-            run: () => Promise<any>;
-        } & {};
-    };
-    transaction: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<import("./transaction").Commands>) | undefined) => {
-        command: string;
-        run: () => Promise<unknown>;
-    } & {
-        buildRaw: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        buildRaw: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             byronEra: string;
             shelleyEra: string;
             allegraEra: string;
@@ -512,41 +206,41 @@ export declare const cardanoCli: (cliPath: string) => {
             metadataCborFile: string;
             updateProposalFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        sign: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        sign: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             txBodyFile: string;
             signingKeyFile: string;
             address: string;
             mainnet?: boolean | undefined;
             testnetMagic?: boolean | undefined;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        witness: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        witness: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             txBodyFile: string;
             signingKeyFile: string;
             address: string;
             mainnet?: boolean | undefined;
             testnetMagic?: boolean | undefined;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        assemble: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        assemble: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             txBodyFile: string;
             witnessFile: string;
             outFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        submit: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        submit: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             shelleyMode: string;
             byronMode: string;
             epochSlots: number;
@@ -554,19 +248,19 @@ export declare const cardanoCli: (cliPath: string) => {
             mainnet?: boolean | undefined;
             testnetMagic?: boolean | undefined;
             txFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        policyid: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        policyid: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             scriptFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        calculateMinFee: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        calculateMinFee: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             txBodyFile: string;
-            mainnet: string;
+            mainnet?: boolean | undefined;
             testnetMagic: string;
             genesis: string;
             protocolParamsFile: string;
@@ -574,29 +268,351 @@ export declare const cardanoCli: (cliPath: string) => {
             txOutCount: string;
             witnessCount: string;
             byronWitnessCount: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        calculateMinValue: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        calculateMinValue: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             genesis: string;
             protocolParamsFile: string;
             multiAsset: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        txid: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        txid: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             txBodyFile: string;
             txFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};
-        view: (options?: (import("./command").DefaultOptions & import("./command").CommandOptions<{
+        view: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
             txBodyFile: string;
             txFile: string;
-        }>) | undefined) => {
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+    };
+    /** Node operation commands */
+    node: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./node").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        keyGen: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            coldVerificationKeyFile: string;
+            coldSigningKeyFile: string;
+            operationalCertificateIssueCounterFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyGenKes: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            verificationKeyFile: string;
+            signingKeyFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyGenVrf: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            verificationKeyFile: string;
+            signingKeyFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyHashVrf: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            verificationKey: string;
+            verificationKeyFile: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        newCounter: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakePoolVerificationKey: string;
+            genesisDelegateVerificationKey: string;
+            coldVerificationKeyFile: string;
+            counterValue: number;
+            operationalCertificateIssueCounterFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        issueOpCert: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            kesVerificationKey: string;
+            kesVerificationKeyFile: string;
+            coldSigningKeyFile: string;
+            operationalCertificateIssueCounterFile: string;
+            kesPeriod: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+    };
+    /** Stake pool commands */
+    stakePool: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./stake-pool").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        registrationCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakePoolVerificationKey: string;
+            coldVerificationKeyFile: string;
+            vrfVerificationKey?: string | undefined;
+            vrfVerificationKeyFile: string;
+            poolPledge: number;
+            poolCost: number;
+            poolMargin: number;
+            poolRewardAccountVerificationKey: string;
+            poolRewardAccountVerificationKeyFile: string;
+            poolOwnerVerificationKey: string;
+            poolOwnerStakeVerificationKeyFile: string;
+            poolRelayIpv4: string;
+            poolRelayIpv6?: string | undefined;
+            poolRelayPort: number;
+            singleHostPoolRelay: string;
+            multiHostPoolRelay?: string | undefined;
+            metadataUrl: string;
+            metadataHash: string;
+            mainnet: boolean;
+            testnetMagic?: string | undefined;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        deregistrationCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakePoolVerificationKey: string;
+            coldVerificationKeyFile: string;
+            epoch: number;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        id: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            stakePoolVerificationKey: string;
+            coldVerificationKeyFile: string;
+            outputFormat: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        metadataHash: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            poolMetadataFile: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+    };
+    /** Node query commands. Will query the local node whose
+     * Unix domain socket is obtained from the
+     * CARDANO_NODE_SOCKET_PATH enviromnent variable.
+     */
+    query: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./query").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        protocolParameters: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        tip: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        stakeDistribution: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        stakeAddressInfo: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            address: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        utxo: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            address: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        ledgerState: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        protocolState: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        stakeSnapshot: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            stakePoolIdStakePoolId: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        poolParams: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            shelleyMode: string;
+            byronMode: string;
+            epochSlots: string;
+            cardanoMode: string;
+            mainnet: string;
+            testnetMagic: string;
+            stakePoolIdStakePoolId: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+    };
+    /** Commands for dealing with Shelley TextView files.
+     * Transactions, addresses etc are stored on disk as
+     * TextView files.
+     */
+    textView: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./text-view").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        decodeCbor: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            inFile: string; /** Payment address commands */
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+    };
+    /** Genesis block commands */
+    genesis: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./genesis").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        keyHash: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyGenGenesis: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyGenDelegate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        keyGenUtxo: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        getVerKey: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        initialAddr: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        initialTxin: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        create: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        createStaked: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        hash: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{}, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+    };
+    /** Governance commands */
+    governance: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<import("./governance").Commands, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+        command: string;
+        run: () => Promise<unknown>;
+    } & {
+        createMirCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            reserves: string;
+            treasury: string;
+            stakeAddress: string;
+            reward: string;
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        createGenesisKeyDelegationCertificate: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
+            command: string;
+            run: () => Promise<any>;
+        } & {};
+        createUpdateProposal: (options?: (import("./command").DefaultOptions & Partial<import("./command").MatchingProperties<{
+            outFile: string;
+        }, string | number | bigint | boolean | symbol | (() => string) | null | undefined>>) | undefined) => {
             command: string;
             run: () => Promise<any>;
         } & {};

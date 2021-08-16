@@ -32,7 +32,7 @@ export type Group = {
 export type Command = {
 	[K in string]: Option
 }
-export type CommandOptions<G extends CommandGroup> = MatchingProperties<G, Option>
+export type CommandOptions<G extends CommandGroup> = Partial<MatchingProperties<G, Option>>
 export type GroupCommands<G extends CommandGroup> = MatchingProperties<G, { [K in string]: any }>
 export type CommandFunction<
 	G extends CommandGroup,
@@ -76,12 +76,12 @@ export const commandFunction =
 			[K in keyof SC]: ReturnType<SC[K]>
 		}
 	>(
-		command: string,
+		start: string,
 		subCommands?: SC
 	) =>
 	(context: string) =>
 	(options?: DefaultOptions & O) => {
-		command = Object.entries(options ?? {}).reduce<string>((acc, [key, value]) => {
+		const command = Object.entries(options ?? {}).reduce<string>((acc, [key, value]) => {
 			switch (typeof value) {
 				case 'boolean':
 					if (value) acc += ` --${kebabize(key)}`
@@ -95,7 +95,7 @@ export const commandFunction =
 					break
 			}
 			return acc
-		}, `${context} ${kebabize(command)}`)
+		}, `${context} ${kebabize(start)}`)
 		const run = () =>
 			new Promise((resolve, reject) => {
 				exec(command, (error, stdout, stderr) => {

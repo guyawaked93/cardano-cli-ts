@@ -114,7 +114,7 @@ export declare type Commands = {
         /** Input filepath of the JSON TxBody. */
         txBodyFile: string;
         /** Use the mainnet magic id. */
-        mainnet: string;
+        mainnet?: boolean;
         /** Specify a testnet magic id. */
         testnetMagic: string;
         /** [TESTING] The genesis file to take initial protocol parameters from. For test clusters only, since the parameters are going to be obsolete for production clusters. */
